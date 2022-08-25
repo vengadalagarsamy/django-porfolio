@@ -4,6 +4,7 @@ from django.db import models
 class Project(models.Model):
     title = models.CharField(max_length=100) # specify max number of characters
     body = models.CharField(max_length=300)
+    languages = models.CharField(max_length=250)
     image = models.ImageField(upload_to='homepage/images/') # requires pillow
     url = models.URLField(blank=True) # provide option for no URL
 
