@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'homepage/custom.css' %}">
+    <link rel="stylesheet" href="{% static 'homepage/nav.css' %}">
+    <link rel="stylesheet" href="{% static 'homepage/json.css' %}">
+    <link rel="stylesheet" href="{% static 'homepage/home.css' %}">
+    <link rel="icon" type="image/png" href="">
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    </head>
+
+<!--navbar-->
+    <body>
+        <nav id="topNav" class="navbar navbar-expand-md navbar-light">
+            <div class="container firsthead">
+            <a class="navbar-brand" href="{% url 'home' %}">
+                <img src="{% static 'homepage/logo.png' %}" class="imglogo d-inline-block align-center" alt="VA Logo">
+                <span>Vengad Alagarsamy</span></a>
+                <div class="collapse navbar-collapse text-center" id="navbarNav">
+                <ul class="navbar-nav ml-auto nav_links">
+                    <li>
+                    <a class="nav-link" href="https://github.com/vengadalagarsamy" target="_blank">GitHub</a>
+                    </li>
+                    <li>
+                    <a class="nav-link" href="https://uk.linkedin.com/in/vengad-alagarsamy-188096171" target="_blank">LinkedIn</a>
+                    </li>
+                </ul>
+                </div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+        </nav>
+        <hr class='nave'>
+
+        <div class="container">
+            <header class="row justify-content-center mb-3">
+                <hgroup class="col-md-9 text-center hg">
+                <h4>Hi, my name is</h4>
+                <h1 id="hometext" class="font-weight-bold">Vengad Alagarsamy</h1>
+                </hgroup>
+            </header>
+        
+            <!--first section of website about me-->
+            <article id="aboutme">
+                <section class="container-fluid">
+                <section class="row">
+                    <section class="text-center justify-content-center align-self-center">
+                    <img class="me img-fluid" src="{% static 'homepage/me.png' %}" class="img-fluid">
+                    </section>
+                    <section class="col-sm justify-content-center align-self-center">
+                    <p class="p1">I have completed a Computer Science degree at Queen Mary University of London.
+                    Below is a collection of my recent projects with the respective development languages and frameworks used listed
+                    beneath them.</p>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><span>Date of Birth:</span> 26 November 1998</li>
+                        <li class="list-group-item"><span>Email:</span> vengad.alagarsamy@outlook.com</li>
+                        <li class="list-group-item"><span>Phone:</span> 07555306348</li>
+                    </ul>
+                    </section>
+                </section>
+                </section>
+            </article>
+        
+            <!--List of portfolio projects I have developed-->
+            <section id="port">
+                <h2 class="h-i" id="section1">Portfolio</h2>
+                <hr class="hr1">
+                <div class="row">
+                    {% for project in projects %}
+                    <section class="col-lg-4 col-md-6">
+                        <!--iterate through project objects-->
+                        {% if project.url %}
+                            <a href="{{ project.url }}"><img src="{{ project.image.url }}" class="img-fluid mb-2"></a>
+                        {% else %}
+                            <img src="{{ project.image.url }}" class="img-fluid mb-2">
+                        {% endif %}
+                        <a href="{{ project.url }}"><h3 class="name">{{ project.title }}</h3></a>
+                        <p class="descrip">{{ project.description }}</p>
+                        <p class="backfront">{{ project.backend }}</p>
+                        <!--<p class="backfront">{{ project.frontend }}</p>-->
+                        <br>
+                        <br>
+                    </section>
+                    {% endfor %}
+                </div>
+            </section>
+        </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    </body>
+
+</html>
